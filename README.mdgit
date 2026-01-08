@@ -1,0 +1,1 @@
+# devops-task-pgagi initgit add README.mdgit commit -m first commitgit branch -M maingit remote add origin https://github.com/sadafp-ops/devops-task-pgagi.gitgit push -u origin main

@@ -9,13 +9,18 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // First check if backend is healthy
-        const healthCheck = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/health`);
-        
+        // ✅ CORRECT health endpoint
+        const healthCheck = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/health`
+        );
+
         if (healthCheck.data.status === 'healthy') {
           setStatus('Backend is connected!');
-          // Then fetch the message
-          const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/message`);
+
+          const response = await axios.get(
+            `${process.env.NEXT_PUBLIC_API_URL}/api/message`
+          );
+
           setMessage(response.data.message);
         }
       } catch (error) {
@@ -32,19 +37,32 @@ export default function Home() {
     <div className="container">
       <Head>
         <title>DevOps Assignment</title>
-        <meta name="description" content="DevOps Assignment with FastAPI and Next.js" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="description"
+          content="DevOps Assignment with FastAPI and Next.js"
+        />
       </Head>
 
       <main>
         <h1>DevOps Assignment</h1>
+
         <div className="status">
-          <p>Status: <span className={status.includes('connected') ? 'success' : 'error'}>{status}</span></p>
+          <p>
+            Status:{' '}
+            <span
+              data-testid="backend-status"
+              className={status.includes('connected') ? 'success' : 'error'}
+            >
+              {status}
+            </span>
+          </p>
         </div>
+
         <div className="message-box">
           <h2>Backend Message:</h2>
-          <p>{message}</p>
+          <p data-testid="backend-message">{message}</p>
         </div>
+
         <div className="info">
           <p>Backend URL: {process.env.NEXT_PUBLIC_API_URL}</p>
         </div>
@@ -73,8 +91,6 @@ export default function Home() {
         }
 
         h1 {
-          margin: 0;
-          line-height: 1.15;
           font-size: 3rem;
           margin-bottom: 2rem;
         }
@@ -84,8 +100,8 @@ export default function Home() {
           padding: 1.5rem;
           border: 1px solid #eaeaea;
           border-radius: 10px;
-          width: 100%;
           max-width: 600px;
+          width: 100%;
         }
 
         .success {
