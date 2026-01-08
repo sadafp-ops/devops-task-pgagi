@@ -63,7 +63,7 @@ jobs:
         env:
           NEXT_PUBLIC_API_URL: http://localhost:8000
         run: |
-          nohup npm run dev -- -p 3001 &
+          nohup npm run dev -- -p 3000 &
 
       - name: Run frontend E2E tests
         working-directory: frontend
