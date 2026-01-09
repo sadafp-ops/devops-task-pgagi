@@ -1,5 +1,6 @@
 # ---------- Build Stage ----------
 FROM node:20-alpine AS builder
+
 WORKDIR /app
 
 COPY package*.json ./
@@ -10,12 +11,14 @@ RUN npm run build
 
 # ---------- Runtime Stage ----------
 FROM node:20-alpine
-WORKDIR /app
 
+WORKDIR /app
 ENV NODE_ENV=production
 
 COPY --from=builder /app ./
 
-EXPOSE 3000
+# Cloud Run listens on 8080
+EXPOSE 8080
 
-CMD ["npm", "start"]
+# IMPORTANT: use PORT env var directly
+CMD ["sh", "-c", "PORT=${PORT} npm run start"]
