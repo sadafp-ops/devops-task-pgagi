@@ -2,7 +2,7 @@
 
 This project consists of a FastAPI backend and a Next.js frontend that communicates with the backend.
 
-## Project Structure
+
 
 
 .
