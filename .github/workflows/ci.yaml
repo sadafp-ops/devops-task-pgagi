@@ -128,6 +128,8 @@ jobs:
       - name: Terraform Apply
         working-directory: terraform/gcp
         run: |
-          terraform apply -auto-approve \
+          terraform apply -auto-approve -input=false \
+            -var="project_id=${{ env.PROJECT_ID }}" \
+            -var="region=${{ env.REGION }}" \
             -var="backend_image=docker.io/$DOCKER_USER/devops-backend:${{ github.sha }}" \
             -var="frontend_image=docker.io/$DOCKER_USER/devops-frontend:${{ github.sha }}"
