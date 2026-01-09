@@ -15,9 +15,6 @@ test-results/
 # Terraform lock
 .terraform.lock.hcl
 
-# Node
-node_modules/
-
 
 __pycache__/
 .env
