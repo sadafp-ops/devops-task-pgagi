@@ -2,10 +2,9 @@
 
 This project consists of a FastAPI backend and a Next.js frontend that communicates with the backend.
 
-## Project Structure.
+## Project Structures
 
 
-.
 ├── backend/               # FastAPI backend
 │   ├── app/
 │   │   └── main.py       # Main FastAPI application
